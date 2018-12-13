@@ -1,0 +1,25 @@
+@charset "utf-8";
+body {
+background: #FFFFFF;
+font: 80% arial, helvetica, sans-serif;
+}
+a { font-weight: bold; color: #000000; text-decoration: none; }
+#content {
+background:#FFFFFF;
+margin-left: auto;
+margin-right: auto;
+padding: 2px;
+}
+#header{
+clear: both; width: 100%;
+padding: 0;
+background: #000000; color: #FFFFFF;
+text-align: center;
+}
+#headertxt { margin: auto; }
+#toplink { font-weight: bold; color:#FFFFFF; text-decoration: none; }
+.series { text-decoration: none; font-weight: bold; color: #CC0000; }
+.item { clear: both; }
+.datecreated { background:#FFFFFF; font: 60%; font-style: italic; }
+.field_label { font-weight: bold; }
+#searchform { margin: 0; padding: 0; vertical-align: middle; }

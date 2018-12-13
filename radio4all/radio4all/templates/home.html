@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="description" content="The A-Infos Radio Project: Broadcast Quality Programming via the Internet" />
+<meta name="keywords" content="a-infos, ainfos, radio, free radio, pirate radio, fm, lpfm, low power, low power fm, project, media, independent, independent media, indymedia, sound, audio, library, audio library, sound library, radio library, media library, archive, audio archive, sound archive, radio archive, media archive, broadcast, programming, free speech, freedom of speech, information, freedom of information, anarchism, anarchist, mutual aid, mp3, mp2, mpeg, ra, ram, ogg, ogg vorbis, flac, speex, spx" />
+<meta name="verify-v1" content="6Ybk/2OszN6LMF8GeH4kMop9AtfQATy15Oevo5ZNK3g=" />
+<title></title>
+<link rel="icon" href="/static/images/icons/favicon.ico" type="image/x-icon" />
+<link REL="StyleSheet" TYPE="text/css" href="/static/css/rp.css" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="/podcast.xml"/>
+<link REL="StyleSheet" TYPE="text/css" href="/static/js/treeview/jquery.treeview.css" />
+<script type="text/javascript" src="/static/js/jquery.js"></script>
+<script type="text/javascript" src="/static/js/treeview/jquery.treeview.min.js"></script>
+<script type="text/javascript" src="/static/js/features/jquery.nospam.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+        document.getElementById('ns').className = 'msgoff';
+        if (document.cookie.length == 0) {
+                document.getElementById('msg').className = 'errorstyle';
+                document.getElementById('msg').innerHTML = "Cookies Required! Please enable cookies in your browser!";
+        }
+        $(".content_link").click(function(){
+                $("#content").load($(this).attr("href"));
+                return false;
+         });
+	$("#navigation").treeview({
+		persist: "location",
+		collapsed: true,
+		unique: true
+                });
+        $('a.e').nospam({
+                replaceText: true,
+                filterLevel: 'normal'
+        });
+        $('span.e').nospam({
+                replaceText: true,
+                filterLevel: 'normal'
+        });
+  });
+</script>
+</head>
+<body>
+<div class="fundbox"><a class="redlink" href="http://www.radio4all.net/support">Some archive (>10 years old) programs are not reachable through the search engine. They can be found at www.radio4all.net/files/pub  <HR> Your support is essential if the service is to continue, there are bandwidth bills to pay every month and failing disk drives to replace. Volunteers do the work, but disk drives and bandwidth are not free. Click on this bar to contribute, even a dollar helps.</a></div>
+
+<table id="mainbody"><tbody><tr><td>
+  <table id="innerbody"><tbody><tr><td>
+    <div id="header">
+      <div id="logo"><a href="http://www.radio4all.net" title="Radio4All"><img src="/static/images/rp-navimg.gif" alt="<?php echo $config['site_title']; ?>" id="logoimg" /></a></div>
+      <div id="headerdata">
+        <div id="topLinks">
+           <a href="/">Home</a>&nbsp;|&nbsp;
+           <a href="/news/">Project News</a>&nbsp;|&nbsp;
+           <a href="/about/">About</a>&nbsp;|&nbsp;
+           <a href="/faq/">FAQ</a>&nbsp;|&nbsp;
+           <a href="/contact/">Contact</a>&nbsp;|&nbsp;
+	   <a href="http://www.radio4all.net/m/">Mobile</a>
+
+        </div>
+      </div>
+      <div id="support"><a href="/support/" title="Support the <?php echo $config['site_title']; ?>"><img src="/static/images/support.png" alt="Support the <?php echo $config['site_title']; ?>" id="supportimg" /></a></div>
+    </div>
+    <div id="databody">
+      <!--[if lte IE 6]>
+        <div><b>This site best viewed with <a href="http://www.firefox.com" title="Download Firefox">Firefox</a>, <a href="http://www.apple.com/safari/download/" title="Apple Safari Browser Site">Safari</a>, <a href="http://www.opera.com/" title="Opera Browser Website">Opera</a>, or Internet Explorer 7 and higher.</b></div>
+      <![endif]-->
+      <div id="datafield">
+        <noscript id="ns" class="errorstyle">
+        This site requries that you enable JavaScript in your browser.<br />
+        Most features of this site simply will not work without a modern JavaScript-enabled web browser.<br />
+        Try visiting our site in one of the following browsers with JavaScript enabled:<br />
+        <a href="http://www.mozilla.com/en-US/firefox/">Firefox</a>,
+        <a href="http://www.apple.com/safari/">Safari</a>,
+        or <a href="http://www.opera.com/download/">Opera</a>
+        </noscript>
+        <span id="msg" class="msgoff">&nbsp;</span>
+            <span id="content">
+                <div id="result_set">
+                    <div id="content_title">Latest Programs</div>
+                    {% for latest in latest_programs %}
+                    <div class="{% if forloop.counter|divisibleby:2 %}result_row_a{% else %}result_row_b{% endif %}" id="{{ latest.program_id }}">
+                       <a href="/api/programs/{{ latest.program_id }}" class="result_info">
+                        <label class="result_series">{{ latest.program_title }}</label>
+                            {{ latest.subtitle }}: {{ latest.subtitle }}
+                            <span>{{ latest.program_title }}<br />
+                                <b>Date: </b>{{ latest.date_created }}<br />
+                                <b>Length: </b>{{ latest.length }}<br />
+                                <b>Contributor: </b>{{ latest.speaker }}</span>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+      {% if is_paginated %}
+            <script type="text/javascript">
+$(document).ready(function(){
+        $(".control_link").click(function(){
+                document.getElementById('loadmsg').innerHTML = "Loading...";
+                $("#content").load($(this).attr("href"));
+                return false;
+         });
+        $("#browsecontrol").change(function() {
+                window.location.href = $(this).val();
+        });
+});
+</script>
+<!-- START: Browsing Controls -->
+<table border="0">
+  <tbody>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+<form><select id="browsecontrol">
+        {% for i in paginator.page_range %}
+      {% if page_obj.number == i %}
+        <option value="?page={{ i }}">{{ i }}1</option>
+      {% else %}
+        <option value="?page={{ i }}">{{ i }}1</option>
+      {% endif %}
+    {% endfor %}
+{% endif %}
+    </select></form>
+</td>
+      <td>&nbsp;<a href=""><b>&gt;</b></a></td>
+      <td>&nbsp;<span id="loadmsg">Records 0-30 of total: {{ paginator.count }}</span></td>
+    </tr>
+  </tbody>
+</table>
+<!-- END: Browsing Controls --></div>
+&nbsp;
+                </span>
+        &nbsp;</div>
+
+  <div id="nav">
+        <?php if ($req[2] != 'search') { ?>
+        <div>
+          <form action="/search/" accept-charset="UTF-8" method="post" name="quicksearch">
+            <input type="text" size="18" maxlength="50" name="searchtext" value="search..."  onblur="if(this.value=='') this.value='search...';" onfocus="if(this.value=='search...') this.value='';" />
+          </form>
+        </div>
+        <?php } ?>
+        <div>
+          <?php $application->showCachedElement($autoinclude['elements']['browsetree'], $config['nav_cache']); ?>
+        </div>
+        <hr/>
+        <?php
+        $loginurl = '/login/';
+        $logintext = 'Login';
+        if ($_COOKIE['RPLOGINSTATE'] == 1) {
+          $loginurl = '/login/logout';
+          $logintext = 'Logout';
+        }
+        ?>
+        <div class="navcontent"><a href="/accounts/login"><?php echo $logintext; ?></a></div>
+<?php if ($_COOKIE['RPLOGINSTATE'] == 1): ?>
+        <br />
+        <div class="navcontent"><a href="/start.jsp">Add Program</a></div>
+        <br />
+        <div class="navcontent"><a href="/<?php echo $config['main_file']; ?>/program/my/">My Programs</a></div>
+<?php endif; ?>
+        <hr/>
+        <div><a href="/podcast.xml" title="Radio Project Front Page Podcast"><img src="/static/images/podcast.gif" height="16" alt="Radio Project Front Page Podcast" align="absmiddle" border="0" width="62"/></a></div>
+        <div><a href="http://feeds.feedburner.com/RadioProjectFrontPagePodcast" title="Radio Project Front Page Podcast on FeedBurner"><img src="/static/images/feedburner.png" height="16" alt="Radio Project Front Page Podcast on FeedBurner" align="absmiddle" border="0" width="64"/></a></div><br />
+        <span class="textHeading">Translate</span><br />
+        <div class="navcontent">
+          <?php $transurl = $config['site_url'] . join('/', $req); $transurl = urlencode($transurl); ?>
+          <a href="http://translate.google.com/translate?u=<?php echo $transurl; ?>&amp;langpair=en%7Cde&amp;hl=en&amp;ie=UTF-8&amp;prev=%2Flanguage_tools" target="_blank">Deutsch</a><br />
+          <a href="http://translate.google.com/translate?u=<?php echo $transurl; ?>&amp;langpair=en%7Ces&amp;hl=en&amp;ie=UTF-8&amp;prev=%2Flanguage_tools" target="_blank">Español</a><br />
+          <a href="http://translate.google.com/translate?u=<?php echo $transurl; ?>&amp;langpair=en%7Cfr&amp;hl=en&amp;ie=UTF-8&amp;prev=/language_tools" target="_blank">Français</a><br />
+          <a href="http://translate.google.com/translate?u=<?php echo $transurl; ?>&amp;langpair=en%7Cit&amp;hl=en&amp;ie=UTF-8&amp;prev=%2Flanguage_tools" target="_blank">Italiano</a><br />
+          <a href="http://translate.google.com/translate?u=<?php echo $transurl; ?>&amp;langpair=en%7Cja&amp;hl=en&amp;ie=UTF-8&amp;prev=%2Flanguage_tools" target="_blank">日本語</a><br />
+          <a href="http://translate.google.com/translate?u=<?php echo $transurl; ?>&amp;langpair=en%7Cpl&amp;hl=en&amp;ie=UTF-8&amp;prev=%2Flanguage_tools" target="_blank">Polski</a><br />
+          <a href="http://translate.google.com/translate?u=<?php echo $transurl; ?>&amp;langpair=en%7Cpt&amp;hl=en&amp;ie=UTF-8&amp;prev=%2Flanguage_tools" target="_blank">Português</a><br />
+          <a href="http://translate.google.com/translate?u=<?php echo $transurl; ?>&amp;langpair=en%7Cru&amp;hl=en&amp;ie=UTF-8&amp;prev=%2Flanguage_tools" target="_blank">Русский</a> </div>
+      </div>
+    </div>
+  </td></tr></tbody></table>
+</td></tr></tbody></table>
+<script type="text/javascript" src="/static/js/awstats_misc_tracker.js"></script>
+<noscript><img src="/static/js/awstats_misc_tracker.js?nojs=y" height=0 width=0 border=0 style="display: none"/></noscript>
+</body>
+</html>
