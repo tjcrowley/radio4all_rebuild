@@ -9,7 +9,7 @@ class HomePageView(ListView):
     context_object_name = 'latest_programs'  # Default: object_list
     paginate_by = 30
     queryset = Programs.objects.all().order_by('-date_created')  # Default: Model.objects.all()
-    template_name = "home.html"
+    template_name = "radio4all/home.html"
 
 
 class ProgramsViewSet(viewsets.ModelViewSet):

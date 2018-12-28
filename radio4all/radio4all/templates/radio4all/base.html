@@ -1,3 +1,5 @@
+{% load staticfiles %}
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -74,59 +76,10 @@ $(document).ready(function(){
         or <a href="http://www.opera.com/download/">Opera</a>
         </noscript>
         <span id="msg" class="msgoff">&nbsp;</span>
+
             <span id="content">
-                <div id="result_set">
-                    <div id="content_title">Latest Programs</div>
-                    {% for latest in latest_programs %}
-                    <div class="{% if forloop.counter|divisibleby:2 %}result_row_a{% else %}result_row_b{% endif %}" id="{{ latest.program_id }}">
-                       <a href="/api/programs/{{ latest.program_id }}" class="result_info">
-                        <label class="result_series">{{ latest.program_title }}</label>
-                            {{ latest.subtitle }}: {{ latest.subtitle }}
-                            <span>{{ latest.program_title }}<br />
-                                <b>Date: </b>{{ latest.date_created }}<br />
-                                <b>Length: </b>{{ latest.length }}<br />
-                                <b>Contributor: </b>{{ latest.speaker }}</span>
-                        </a>
-                    </div>
-                    {% endfor %}
-                </div>
-      {% if is_paginated %}
-            <script type="text/javascript">
-$(document).ready(function(){
-        $(".control_link").click(function(){
-                document.getElementById('loadmsg').innerHTML = "Loading...";
-                $("#content").load($(this).attr("href"));
-                return false;
-         });
-        $("#browsecontrol").change(function() {
-                window.location.href = $(this).val();
-        });
-});
-</script>
-<!-- START: Browsing Controls -->
-<table border="0">
-  <tbody>
-    <tr>
-      <td>&nbsp;</td>
-      <td>
-<form><select id="browsecontrol">
-        {% for i in paginator.page_range %}
-      {% if page_obj.number == i %}
-        <option value="?page={{ i }}">{{ i }}1</option>
-      {% else %}
-        <option value="?page={{ i }}">{{ i }}1</option>
-      {% endif %}
-    {% endfor %}
-{% endif %}
-    </select></form>
-</td>
-      <td>&nbsp;<a href=""><b>&gt;</b></a></td>
-      <td>&nbsp;<span id="loadmsg">Records 0-30 of total: {{ paginator.count }}</span></td>
-    </tr>
-  </tbody>
-</table>
-<!-- END: Browsing Controls --></div>
-&nbsp;
+            {% block content %}
+            {% endblock %}
                 </span>
         &nbsp;</div>
 
@@ -178,4 +131,3 @@ $(document).ready(function(){
 <script type="text/javascript" src="/static/js/awstats_misc_tracker.js"></script>
 <noscript><img src="/static/js/awstats_misc_tracker.js?nojs=y" height=0 width=0 border=0 style="display: none"/></noscript>
 </body>
-</html>
