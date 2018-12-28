@@ -1,0 +1,68 @@
+{% extends 'radio4all/base.html' %}
+{% load static %}
+
+{% block content %}
+    <span id="content_title">About The A-Infos Radio Project</span>
+<div id="text_cell">
+  <p align="justify">The
+    A-Infos Radio Project was formed in 1996 by grassroots broadcasters,
+    free radio journalists and cyber-activists to provide ourselves with
+    the means to share our radio programs via the Internet. To our knowledge,
+    the A-Infos Radio Project was the first grassroots media project of
+    it's kind on the internet. Our goal is to support and expand the movement
+    for democratic communications worldwide. We exist to be an alternative
+    to the corporate and government media which do not serve struggles for
+    liberty, justice and peace, nor enable the free expression of creativity.
+    The archived material is available to anyone who wants it free of charge. </p>
+  <p align="justify">We
+    welcome submissions from all stations and independent contributors in
+    the service of these goals. All material is donated by its contributors
+    who are solely responsible for its content.</p>
+  <p class="textBoldLarge">How It Works</p>
+  <p align="justify">This
+    archive is designed to provide compressed audio files which can be
+    downloaded to your computer and then converted to tape or added to a playlist
+    for broadcast.</p>
+  <p align="justify">We
+    provide technical support via the Radio Project mailing list,
+    <a href="#" rel="ten/puesir.stsil//tcejorpoidar" class="e">#</a>
+    and are happy to help you with any questions or problems you may have.</p>
+  <blockquote>
+    <!-- BEGIN subscription form -->
+    <form action="https://lists.riseup.net/www" method="post">
+      <span class="textBoldLarge">Subscribe to A-Infos Radio Project Mailing list: </span>
+      <input name="email" size="20" maxlength="255" value="Your e-mail here"  onblur="if(this.value=='') this.value='Your e-mail here';" onfocus="if(this.value=='Your e-mail here') this.value='';">
+      <input type="hidden" name="list" value="radioproject" />
+      <input type="hidden" name="action" value="subrequest" />
+      <input name="action_subrequest" value="Subscribe" type="hidden">
+    </form>
+    <!-- END subscription form -->
+  </blockquote>
+    <p class="textBoldLarge">Donate to the A-Infos Radio Project:</p>
+    <p align="justify">A monetary donation or a donation of hardware
+    (particularly rack mount server systems and hard drives for rack mound systems)
+    would be greatly appreciated. If you would like to send us donations
+    via postal mail, please contact us at
+    <a href="#" rel="ten/lla4oidar//pr" class="e">#</a>
+    to make arrangements, you can also send us donations via PayPal:</p>
+    <!-- Begin PayPal Logo -->
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+      <font face="Arial, Helvetica, sans-serif" size="-1">
+      <input name="cmd" value="_xclick" type="hidden">
+      <input name="business" value="rp@radio4all.net" type="hidden">
+      <input name="item_name" value="A-Infos Radio Project" type="hidden">
+      <input src="https://www.paypal.com/images/x-click-but21.gif" name="submit" alt="Make payments with PayPal - it's fast, free and secure!" border="0" type="image">
+      Internet donations are NOT tax deductible. </font>
+    </form>
+    <!-- End PayPal Logo -->
+    <p>If you want to mail a check, money order, or well concealed cash, please send it to: </p>
+    <p>A-Infos Radio Project<br>
+      P. O. Box 302<br>
+      Watkins Glen, NY 14891<br>
+      USA</p>
+  <p class="textBoldLarge">Technical Note</p>
+  <p>The A-Infos Radio Project is powered by free software, including: <a href="http://tomcat.apache.org/">Apache Tomcat</a>,
+  <a href="http://commons.apache.org/">commons.apache.org</a>, <a href="http://quercus.caucho.com/">Quercus PHP</a>, <a href="http://jquery.com/">jQuery</a>
+  and <a href="http://dev.mysql.com/">MySQL</a>.
+</div>
+{% endblock %}

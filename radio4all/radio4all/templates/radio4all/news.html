@@ -1,0 +1,15 @@
+{% extends 'radio4all/base.html' %}
+{% load static %}
+
+{% block content %}
+                <div id="result_set">
+                    <div id="content_title">Latest News</div>
+                    {% for latest in latest_news %}
+                    <div class='{% cycle 'result_row_a' 'result_row_b' %}'>
+                        <a href='/news/{{ latest.id }}'> {{ latest.pub_date }}: {{ latest.title }}'</a></div>
+                    {% endfor %}
+                </div>
+
+&nbsp;
+
+{% endblock %}

@@ -1,4 +1,4 @@
-from .models import Files, Locations, Programs
+from .models import Files, Locations, Programs, News, Faq
 from rest_framework import viewsets
 from .serializers import FilesSerializer, LocationSerializer, ProgramsSerializer
 
@@ -10,6 +10,35 @@ class HomePageView(ListView):
     paginate_by = 30
     queryset = Programs.objects.all().order_by('-date_created')  # Default: Model.objects.all()
     template_name = "radio4all/home.html"
+
+
+class AboutPageView(ListView):
+    model = Programs
+    context_object_name = 'latest_programs'  # Default: object_list
+    paginate_by = 30
+    queryset = Programs.objects.all().order_by('-date_created')  # Default: Model.objects.all()
+    template_name = "radio4all/about.html"
+
+class FaqPageView(ListView):
+    model = Faq
+    context_object_name = 'latest_faq'  # Default: object_list
+    paginate_by = 30
+    queryset = Faq.objects.all().order_by('-sort_order')  # Default: Model.objects.all()
+    template_name = "radio4all/faq.html"
+
+class NewsPageView(ListView):
+    model = News
+    context_object_name = 'latest_news'  # Default: object_list
+    paginate_by = 30
+    queryset = News.objects.all().order_by('-pub_date')  # Default: Model.objects.all()
+    template_name = "radio4all/news.html"
+
+class ContactPageView(ListView):
+    model = Programs
+    context_object_name = 'latest_programs'  # Default: object_list
+    paginate_by = 30
+    queryset = Programs.objects.all().order_by('-date_created')  # Default: Model.objects.all()
+    template_name = "radio4all/contact.html"
 
 
 class ProgramsViewSet(viewsets.ModelViewSet):

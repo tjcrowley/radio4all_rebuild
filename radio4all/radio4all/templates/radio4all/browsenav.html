@@ -1,0 +1,80 @@
+<span class="textHeading">Browse Programs</span>
+          <ul class="treeview" id="navigation">
+            <li class="tvic"><a href="/filter/popular">by Popularity</a></li>
+            <li class="tvic"><a href="/filter/type/">by Type</a>
+              <ul>
+                    {% for category in categories %}
+              <li class="tvil">
+                  <a href="/filter/type/{{ category.type_id }}">{{ category.type }}</a>
+              </li>
+                {% endfor %}
+              </ul>
+              <div class="tvca"></div>
+            </li>
+            <li class="tvic"><a href="/topic/">by Topic</a>
+              <div class="tvca"></div>
+            </li>
+            <li class="tvic"><a href="/filter/length/">by Length</a>
+              <ul>
+                <li class="tvil"><a href="/filter/length/00:00:01,00:01:00/">0-1 minute</a></li>
+                <li class="tvil"><a href="/filter/length/00:01:00,00:02:00/">1-2 minutes</a></li>
+                <li class="tvil"><a href="/filter/length/00:02:00,00:05:00/">2-5 minutes</a></li>
+                <li class="tvil"><a href="/filter/length/00:05:00,00:15:00/">5-15 minutes</a></li>
+                <li class="tvil"><a href="/filter/length/00:15:00,00:30:00/">15-30 minutes</a></li>
+                <li class="tvil"><a href="/filter/length/00:30:00,01:00:00/">30-60 minutes</a></li>
+                <li class="tvil"><a href="/filter/length/01:00:00,01:30:00/">60-90 minutes</a></li>
+                <li class="tvil"><a href="/filter/length/01:30:00,02:00:00/">90-120 minutes</a></li>
+                <li class="tvil"><a href="/filter/length/02:00:00,00:00:00/">over 120 minutes</a></li>
+              </ul>
+              <div class="tvca"></div>
+            </li>
+            <li class="tvic"><a href="/series/">by Series</a>
+              <ul>
+                <li class="tvil">
+   {% comment %}               <?php
+                $links = $application->alphaLinks("/filter/series/");
+                include($autoinclude['elements']['alphatable']);
+                ?>{% endcomment %}
+                </li>
+              </ul>
+              <div class="tvca"></div>
+            </li>
+            <li class="tvic"><a href="/contributor/">by Contributor</a>
+              <ul>
+                <li class="tvil">
+      {% comment %}            <?php
+                $links = $application->alphaLinks("/{$config['main_file']}/filter/contributor/");
+                include($autoinclude['elements']['alphatable']);
+                ?>{% endcomment %}
+                </li>
+              </ul>
+                <div class="tvca"></div>
+            </li>
+            <li class="tvic"><a href="/filter/advisory/">by Advisory</a>
+              <ul>
+                <li class="tvil"><a href="/filter/advisory/1">Unknown</a></li>
+                <li class="tvil"><a href="/filter/advisory/2">No Advisories</a></li>
+                <li class="tvil"><a href="/filter/advisory/3">Strong Language</a></li>
+                <li class="tvil"><a href="/filter/advisory/4">Safe Harbor Only</a></li>
+              </ul>
+              <div class="tvca"></div>
+            </li>
+            <li class="tvic"><a href="/filter/license/">by License</a>
+              <ul>
+                <li class="tvil"><a href="/filter/license/legacy" title="Radio Project Legacy Ad Hoc Licenses"><img src="/images/icons/rp-legacy.png" alt="Radio Project Legacy Ad Hoc Licenses" /></a>
+                <ul>
+                  <li><a href="/filter/license/legacy/np" title="Ad Hoc License: For non-profit use only.">Non-Profit Only</a></li>
+                  <li><a href="/filter/license/legacy/ne" title="Ad Hoc License: No excerpting/modifying without permission.">No Excerpting</a></li>
+                  <li><a href="/filter/license/legacy/cp" title="Ad Hoc License: Contact producer for permission to broadcast.">Contact Producer</a></li>
+                  <li><a href="/filter/license/legacy/sn" title="Ad Hoc License: See notes.">See Notes</a></li>
+                </ul>
+                </li>
+                  {%  for license in licenses %}
+                  <li class="tvil">
+                  <a href="filter/license/{{ license.cc_abrev }}" title="Creative Commons {{ license.cc_name }}"><img src="/images/icons/{{ license.cc_abrev }}.png" /></a>&nbsp;
+                <a href="{{ license.cc_url }}" title="View License: {{ license.cc_name }}" target="_blank"><img src="/images/icons/info-icon.png" alt="View license: {{ license.cc_name }} /></a>
+                </li>
+                {% endfor %}
+              </ul>
+            </li>
+          </ul>
